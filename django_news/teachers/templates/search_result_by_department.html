@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询结果</title>
+</head>
+<body>
+    <h1>查询结果</h1>
+
+    {% if teacher_info_List %}
+        {% for teacher_info in teacher_info_List %}
+        <h2>教师信息</h2>
+        <p>院系: {{ teacher_info.Department }}</p>
+        <p>姓名: {{ teacher_info.Name }}</p>
+        <p>职称: {{ teacher_info.Title }}</p>
+        <p>照片: <img src=".../images/教授/高立.jpg" alt="照片错误"></p>
+        {% endfor %}
+
+    {% else %}
+        <p>未找到</p>
+
+    {% endif %}
+
+    <a href="{% url 'search_teacher_by_department/' %}">返回搜索</a>
+</body>
+</html>

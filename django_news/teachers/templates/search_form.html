@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>教师查询</title>
+</head>
+<body>
+    <h1>教师查询</h1>
+
+    <h2>按姓名查询</h2>
+        <form method="post" action="{% url 'search_teacher_by_name/' %}">
+        {% csrf_token %}
+        <label for="teacher_name">老师姓名:</label>
+        <input type="text" name="teacher_name" id="teacher_name">
+        <button type="submit">查询</button>
+    </form>
+
+
+
+
+
+    <h2>按院系查询</h2>
+    <form method="post" action="{% url 'search_teacher_by_department/' %}">
+        {% csrf_token %}
+        <label for="department">选择系：</label>
+        <label>
+            <select name="department" multiple id="department">
+                <option value="传播学系">传播学系</option>
+                <option value="数字媒体系">数字媒体系</option>
+                <option value="设计系">设计系</option>
+                <option value="艺术教研中心">艺术教研中心</option>
+            </select>
+        </label>
+        <button type="submit">查询</button>
+    </form>
+
+
+</body>
+</html>
