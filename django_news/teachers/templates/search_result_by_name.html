@@ -12,7 +12,7 @@
         <p>院系: {{ teacher_info.Department }}</p>
         <p>姓名: {{ teacher_info.Name }}</p>
         <p>职称: {{ teacher_info.Title }}</p>
-        <p>照片: <img src="../{{teacher_info.Photo}}" alt="照片错误"></p>
+        <p>照片: <img src="/static/{{teacher_info.Photo}}" width="200" height="250" alt="照片错误"></p>
 
     {% else %}
         <p>未找到</p>

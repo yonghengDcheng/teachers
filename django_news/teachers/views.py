@@ -1,9 +1,8 @@
 from django.shortcuts import render
 import csv
 
-
+# 访问地址：http://127.0.0.1:8000/teachers/search_teacher_by_name/
 def find_teacher_info_by_name(teacher_name):
-    # 从CSV文件中查找并返回老师信息
     teacher_info = None
     with open('teacher.csv', 'r') as csvfile:
         csvreader = csv.DictReader(csvfile)
@@ -16,7 +15,6 @@ def find_teacher_info_by_name(teacher_name):
 
 
 def find_teacher_info_by_department(selected_departments):
-    # 从CSV文件中查找并返回选定系的老师信息列表
     teacher_info_List = []
     with open('teacher.csv', 'r') as csvfile:
         csvreader = csv.DictReader(csvfile)
@@ -29,7 +27,6 @@ def find_teacher_info_by_department(selected_departments):
 def search_teacher_by_name(request):
     if request.method == 'POST':
         teacher_name = request.POST['teacher_name']
-        # 从CSV文件中查找对应的老师信息
         teacher_info = find_teacher_info_by_name(teacher_name)
         return render(request, 'search_result_by_name.html', context={'teacher_info': teacher_info})
     return render(request, 'search_form.html')
@@ -44,28 +41,7 @@ def search_teacher_by_department(request):
     return render(request, 'search_form.html')
 
 
-def get_image_path(teacher_name):
-    teacher_info1 = find_teacher_info_by_name(teacher_name)
-    image_path = f'../images/{teacher_info1["department"]}/{teacher_info1["name"]}.jpg'
-    return image_path
 
-
-def image_path1(request):
-    if request.method == 'POST':
-        teacher_name = request.POST['teacher_name']
-        # 获取教师的图片路径
-        image_path = get_image_path(teacher_name)
-        return render(request, 'search_result_by_name.html', context={'image_path': image_path})
-    return render(request, 'search_form.html')
-
-
-def image_path2(request):
-    if request.method == 'POST':
-        teacher_name = request.POST['teacher_name']
-        # 获取教师的图片路径
-        image_path = get_image_path(teacher_name)
-        return render(request, 'search_result_by_department.html', context={'image_path': image_path})
-    return render(request, 'search_form.html')
 
 
 
